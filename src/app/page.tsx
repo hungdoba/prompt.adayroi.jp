@@ -43,13 +43,17 @@ const MessageCard = ({
       )}
       onClick={() => onDelete(index)}
     />
-    <Card
-      className="w-full"
-      onClick={() => navigator.clipboard.writeText(message.content)}
-    >
+    <Card className="w-full">
       <CardHeader>
-        <CardTitle>{message.content}</CardTitle>
-        <CardDescription className="cursor-pointer hover:opacity-75 whitespace-pre-line text-xs">
+        <CardTitle
+          onClick={() => navigator.clipboard.writeText(message.content)}
+        >
+          {message.content}
+        </CardTitle>
+        <CardDescription
+          onClick={() => navigator.clipboard.writeText(message.explain)}
+          className="cursor-pointer hover:opacity-75 whitespace-pre-line text-xs"
+        >
           {message.explain}
         </CardDescription>
       </CardHeader>
@@ -177,6 +181,12 @@ export default function Home() {
             value={content}
             onChange={(e) => handleInputChange(e.target.value)}
             placeholder="Type your message here..."
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && e.ctrlKey) {
+                e.preventDefault();
+                handleSubmit(e);
+              }
+            }}
           />
           <Button disabled={loading}>
             {loading ? 'Checking...' : 'Check'}
