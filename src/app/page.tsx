@@ -57,8 +57,6 @@ const MessageCard = ({
           {message.explain}
         </CardDescription>
       </CardHeader>
-      {/* <CardContent>{message.content}</CardContent> */}
-      {/* <CardFooter>{message.option}</CardFooter> */}
     </Card>
   </div>
 );
@@ -152,8 +150,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center max-h-screen m-2">
-      <div className="flex flex-col max-w-screen-md w-full">
-        <ScrollArea className="h-[calc(96vh-8rem)] p-1 mb-2">
+      <div className="flex flex-col w-full">
+        <ScrollArea className="h-[calc(88vh-8rem)] p-1 mb-2">
           <div ref={chatContainerRef} className="flex flex-col w-full">
             {messages.map((message, index) => (
               <MessageCard
